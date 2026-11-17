@@ -29,6 +29,18 @@ jobs:
       - name: Run Maven tests
         run: mvn clean test -Dheadless=true
 
+      - name: Generate Allure HTML report
+        if: always()
+        run: mvn allure:report
+
+      - name: Upload Allure HTML report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-html-report
+          path: target/site/allure-maven-plugin/
+          if-no-files-found: warn
+
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v7
