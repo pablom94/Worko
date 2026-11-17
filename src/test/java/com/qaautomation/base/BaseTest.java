@@ -32,6 +32,10 @@ public class BaseTest {
 
         ChromeOptions options = new ChromeOptions();
 
+        if (Boolean.getBoolean("headless")) {
+            options.addArguments("--headless=new");
+        }
+
         options.addArguments("--disable-saved-password-bubble");
         options.addArguments("--disable-notifications");
 
